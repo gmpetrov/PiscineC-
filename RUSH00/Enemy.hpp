@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AmmoPlayer.hpp                                     :+:      :+:    :+:   */
+/*   Enemy.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/11 16:09:51 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/12 00:29:01 by gpetrov          ###   ########.fr       */
+/*   Created: 2015/01/11 19:11:23 by gpetrov           #+#    #+#             */
+/*   Updated: 2015/01/11 21:17:51 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AMMO_PLAYER_H
-# define AMMO_PLAYER_H
+#ifndef ENEMY_H
+# define ENEMY_H
 
 # include <iostream>
 # include <string>
 
-# include "Ammo.hpp"
+# include "Ship.hpp"
 
-class AmmoPlayer : public Ammo{
+class Enemy : public Ship{
 	public:
-		AmmoPlayer(void);
-		AmmoPlayer(AmmoPlayer const & stc);
-		~AmmoPlayer(void);
-		AmmoPlayer &		operator=(AmmoPlayer const & rhs);
-		int					getNb();
-		void				setNb(int);
-		int					getNbInstance();
-		void 				setNbInstance(int);
+		Enemy(int, int);
+		Enemy(Enemy const & src, int, int);
+		~Enemy(void);
+		Enemy &		operator=(Enemy const & rhs);
+		virtual void 	attack();
 	protected:
-
-	static int				nb;
-	static int				nbInstance;
 };
 
 #endif

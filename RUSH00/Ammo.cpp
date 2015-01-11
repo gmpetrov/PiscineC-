@@ -6,17 +6,16 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/11 15:55:02 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/11 18:34:02 by gpetrov          ###   ########.fr       */
+/*   Updated: 2015/01/12 00:23:29 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Ammo.hpp"
 
-Ammo::Ammo(void){
-
+Ammo::Ammo(void) : _x(0), _y(0){
 }
 
-Ammo::Ammo(Ammo const & src){
+Ammo::Ammo(Ammo const & src) : _x(0), _y(0){
 	*this = src;
 }
 

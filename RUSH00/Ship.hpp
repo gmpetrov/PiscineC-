@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/10 22:30:43 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/11 00:35:36 by gpetrov          ###   ########.fr       */
+/*   Updated: 2015/01/11 22:38:43 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ class Ship{
 		int			getMaxHP();
 		Weapon 		*getWeapon();
 		void		setHP(int);
+		Ship 		*next;
+		Ship 		*prev;
 		virtual void attack() = 0;
 	protected:
 		int				_x;

@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/11 15:55:02 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/11 18:34:19 by gpetrov          ###   ########.fr       */
+/*   Updated: 2015/01/11 21:02:24 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class Ammo{
 		int				getY();
 		void			setX(int);
 		void			setY(int);
+		bool 			dead;
 	protected:
 		std::string		_type;
 		int				_x;

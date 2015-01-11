@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RayGun.cpp                                         :+:      :+:    :+:   */
+/*   Enemy.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/10 22:58:07 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/12 00:32:25 by gpetrov          ###   ########.fr       */
+/*   Created: 2015/01/11 19:11:23 by gpetrov           #+#    #+#             */
+/*   Updated: 2015/01/11 21:18:00 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RayGun.hpp"
+#include "Enemy.hpp"
 
-RayGun::RayGun(void) : Weapon("Ray Gun"){
+Enemy::Enemy(int hp, int maxHp) : Ship(hp, maxHp){
+
 }
 
-RayGun::RayGun(RayGun const & src) : Weapon("Ray Gun"){
+Enemy::Enemy(Enemy const & src, int hp, int maxHp) : Ship(src, hp, maxHp){
 	*this = src;
 }
 
-RayGun::~RayGun(void){
+Enemy::~Enemy(void){
 
 }
 
-RayGun &	RayGun::operator=(RayGun const & rhs){
+Enemy &	Enemy::operator=(Enemy const & rhs){
 	(void)rhs;
 	return *this;
+}
+
+void		Enemy::attack(){
+	return ;
 }

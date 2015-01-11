@@ -6,16 +6,20 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/10 22:30:43 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/11 00:34:06 by gpetrov          ###   ########.fr       */
+/*   Updated: 2015/01/11 22:33:09 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Ship.hpp"
 
 Ship::Ship(int hp, int maxHp) : _x(0), _y(0), _hp(hp), _maxHp(maxHp), weapon(new RayGun()){
+	this->next = NULL;
+	this->prev = NULL;
 }
 
 Ship::Ship(Ship const & src, int hp, int maxHp) : _x(0), _y(0), _hp(hp), _maxHp(maxHp), weapon(new RayGun()){
+	this->next = NULL;
+	this->prev = NULL;
 	*this = src;
 }
 
