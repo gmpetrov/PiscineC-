@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/11 15:55:02 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/11 16:03:04 by gpetrov          ###   ########.fr       */
+/*   Updated: 2015/01/11 18:34:02 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,17 @@ Ammo &	Ammo::operator=(Ammo const & rhs){
 
 std::string		Ammo::getType(){
 	return this->_type;
+}
+
+int				Ammo::getX(){
+	return this->_x;
+}
+int				Ammo::getY(){
+	return this->_y;
+}
+void			Ammo::setX(int x){
+	this->_x = x;
+}
+void			Ammo::setY(int y){
+	this->_y = y;
 }

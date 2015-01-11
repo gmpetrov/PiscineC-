@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/10 22:38:31 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/11 16:25:08 by gpetrov          ###   ########.fr       */
+/*   Updated: 2015/01/11 18:31:38 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <iostream>
 # include <string>
 # include "Ammo.hpp"
+# include "AmmoPlayer.hpp"
 
 class Weapon{
 	public:

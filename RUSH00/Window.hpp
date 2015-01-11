@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/10 17:41:46 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/11 00:06:53 by gpetrov          ###   ########.fr       */
+/*   Updated: 2015/01/11 17:09:45 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 # define WIDTH 	200
 # define HEIGHT 24
+# define PLAYER_X 5
 # define WALL 	'#'
 # define PLAYER '>'
 # define BULLET	'-'
@@ -43,6 +44,7 @@ class Window{
 		void		update(void);
 		void		play(void);
 		void		collision(void);
+		void		moveAmmo(void);
 		Grid		*grid;
 		Ship		*player;
 

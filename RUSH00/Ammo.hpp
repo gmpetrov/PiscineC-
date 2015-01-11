@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/11 15:55:02 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/11 16:26:08 by gpetrov          ###   ########.fr       */
+/*   Updated: 2015/01/11 18:34:19 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,21 @@ class Ammo{
 	public:
 		Ammo(void);
 		Ammo(Ammo const & stc);
-		~Ammo(void);
+		virtual ~Ammo(void);
 		Ammo &		operator=(Ammo const & rhs);
 		std::string		getType();
 		virtual int		getNb() = 0;
+		virtual void	setNb(int) = 0;
+		virtual int 	getNbInstance() = 0;
+		virtual void	setNbInstance(int) = 0;
+		int				getX();
+		int				getY();
+		void			setX(int);
+		void			setY(int);
 	protected:
 		std::string		_type;
+		int				_x;
+		int				_y;;
 
 };
 

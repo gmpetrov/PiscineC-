@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/11 16:09:51 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/11 16:26:16 by gpetrov          ###   ########.fr       */
+/*   Updated: 2015/01/11 18:34:03 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 AmmoPlayer::AmmoPlayer(void){
 	AmmoPlayer::nb++;
+	AmmoPlayer::nbInstance++;
 }
 
 AmmoPlayer::AmmoPlayer(AmmoPlayer const & src) : Ammo(src){
 	AmmoPlayer::nb++;
+	AmmoPlayer::nbInstance++;
 	*this = src;
 }
 
 AmmoPlayer::~AmmoPlayer(void){
-	AmmoPlayer::nb--;
+	AmmoPlayer::nbInstance--;
 }
 
 AmmoPlayer &	AmmoPlayer::operator=(AmmoPlayer const & rhs){
@@ -34,4 +36,17 @@ int				AmmoPlayer::getNb(){
 	return AmmoPlayer::nb;
 }
 
+void 			AmmoPlayer::setNb(int nb){
+	AmmoPlayer::nb = nb;
+}
+
+int				AmmoPlayer::getNbInstance(){
+	return AmmoPlayer::nbInstance;
+}
+
+void 			AmmoPlayer::setNbInstance(int nb){
+	AmmoPlayer::nbInstance = nb;
+}
+
 int			AmmoPlayer::nb = 0;
+int			AmmoPlayer::nbInstance = 0;
