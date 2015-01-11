@@ -16,13 +16,10 @@
 
 int		main(void){
 	Window win;
-
-	win.initData();
+	
 	win.init();
+	win.initData();
 	win.update();
-	// while (42){
-
-	// }
 	win.play();
 	return 0;
 }

@@ -22,7 +22,7 @@
 # include "Grid.hpp"
 # include "Player.hpp"
 
-# define WIDTH 	80
+# define WIDTH 	200
 # define HEIGHT 24
 # define WALL 	'#'
 # define PLAYER '>'

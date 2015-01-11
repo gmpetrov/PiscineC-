@@ -41,7 +41,7 @@ int 		Window::getHeigth(){
 
 void		Window::init(void){
 	initscr();
-	getmaxyx(stdscr, this->_width, this->_heigth);
+	getmaxyx(stdscr, this->_heigth, this->_width);
 	curs_set(FALSE);
 	keypad(stdscr, TRUE);
 	timeout(0);
@@ -56,15 +56,15 @@ void		Window::initData(void){
 	int i = 0;
 
 	srandom(time(NULL));
-	this->grid = new Grid[WIDTH];
-	this->grid[WIDTH - 1]._top = HEIGHT / 6;
-  	this->grid[WIDTH - 1]._bottom = this->grid[WIDTH - 1]._top * MARGIN;
+	this->grid = new Grid[this->_width];
+	this->grid[this->_width - 1]._top = this->_heigth / 2;
+  	this->grid[this->_width - 1]._bottom = this->grid[this->_width - 1]._top * MARGIN;
 
   	this->player = new Player();
   	this->player->setX(5);
-  	this->player->setY(HEIGHT / 2);
+  	this->player->setY(this->_heigth / 2);
   	mvaddch(this->player->getY(), this->player->getY(), PLAYER);
-  	while (i < WIDTH){
+  	while (i < this->_width){
   		this->generateMap();
   		i++;
   	}
@@ -73,7 +73,7 @@ void		Window::generateMap(){
 	int 	i = 0;
 	int 	ran;
 
-	while (i < (WIDTH - 1)){
+	while (i < (this->_width - 1)){
     	this->grid[i]._top    = this->grid[i + 1]._top;
     	this->grid[i]._bottom = this->grid[i + 1]._bottom;
     	i++;
@@ -83,15 +83,15 @@ void		Window::generateMap(){
 
 	ran = random() % 5;
 	if (ran == 0){
-		this->grid[WIDTH - 1]._top--;
-	    if (this->grid[WIDTH - 1]._top < MARGIN) {
-	      this->grid[WIDTH - 1]._top++;
+		this->grid[this->_width - 1]._top--;
+	    if (this->grid[this->_width - 1]._top < MARGIN) {
+	      this->grid[this->_width - 1]._top++;
 	    }
 	}
 	else if (ran == 1){
-		this->grid[WIDTH - 1]._top++;
-	    if (this->grid[WIDTH - 1]._top > this->grid[WIDTH - 1]._bottom - MARGIN) {
-	      this->grid[WIDTH - 1]._top--;
+		this->grid[this->_width - 1]._top++;
+	    if (this->grid[this->_width - 1]._top > this->grid[this->_width - 1]._bottom - MARGIN) {
+	      this->grid[this->_width - 1]._top--;
 	    }
 	}
 
@@ -99,16 +99,16 @@ void		Window::generateMap(){
 
 	ran = random() % 5;
 	if (ran == 0){
-		this->grid[WIDTH - 1]._bottom++;
-		if (this->grid[WIDTH - 1]._bottom > HEIGHT - 2) {
-			this->grid[WIDTH - 1]._bottom--;
+		this->grid[this->_width - 1]._bottom++;
+		if (this->grid[this->_width - 1]._bottom > this->_heigth - 2) {
+			this->grid[this->_width - 1]._bottom--;
 		}
 	}
 	else if (ran == 1){
-		this->grid[WIDTH - 1]._bottom--;
-		if (this->grid[WIDTH - 1]._bottom <=
-		  this->grid[WIDTH - 1]._top + 2) {
-		  this->grid[WIDTH - 1]._bottom++;
+		this->grid[this->_width - 1]._bottom--;
+		if (this->grid[this->_width - 1]._bottom <=
+		  this->grid[this->_width - 1]._top + 2) {
+		  this->grid[this->_width - 1]._bottom++;
 		}
 	}
 }
@@ -119,20 +119,20 @@ void		Window::update(void){
 
 	erase();
 
-	while (i < WIDTH){
+	while (i < this->_width){
 		while (j < this->grid[i]._top){
 			mvaddch(j, i, WALL);
 			j++;
 		}
 		j = this->grid[i]._bottom;
-		while (j < HEIGHT){
+		while (j < this->_heigth){
 			mvaddch(j, i, WALL);
 			j++;
 		}
 		i++;
 		j = 0;
 	}
-	mvprintw(0, 0, "%d/%d ammo : %d", this->player->getHP(), this->player->getMaxHP(), this->player->getWeapon()->getAmmo());
+	mvprintw(0, 0, "%d/%d ammo : %d ", this->player->getHP(), this->player->getMaxHP(), this->player->getWeapon()->getAmmo());
 	mvaddch(this->player->getY(), this->player->getX(), PLAYER);
 	refresh();
 }
@@ -140,7 +140,7 @@ void		Window::update(void){
 void		Window::collision(){
 	int 	i = 0;
 
-	while (i < (WIDTH - 1)){
+	while (i < (this->_width - 1)){
 		if (this->player->getY() < this->grid[this->player->getX() - 1]._top){
 			if (this->player->getHP() > 0){
 				this->player->setHP(this->player->getHP() - 1);
