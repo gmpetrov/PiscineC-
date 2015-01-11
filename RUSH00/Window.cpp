@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/10 17:41:46 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/11 00:45:31 by gpetrov          ###   ########.fr       */
+/*   Updated: 2015/01/11 16:26:36 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void		Window::update(void){
 		i++;
 		j = 0;
 	}
-	mvprintw(0, 0, "%d/%d ammo : %d ", this->player->getHP(), this->player->getMaxHP(), this->player->getWeapon()->getAmmo());
+	mvprintw(0, 0, "%d/%d HP, ammo : %d ", this->player->getHP(), this->player->getMaxHP(), this->player->getWeapon()->getAmmo()->getNb());
 	mvaddch(this->player->getY(), this->player->getX(), PLAYER);
 	refresh();
 }

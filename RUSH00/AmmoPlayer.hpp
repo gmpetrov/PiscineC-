@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RayGun.hpp                                         :+:      :+:    :+:   */
+/*   AmmoPlayer.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/10 22:58:07 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/11 16:17:28 by gpetrov          ###   ########.fr       */
+/*   Created: 2015/01/11 16:09:51 by gpetrov           #+#    #+#             */
+/*   Updated: 2015/01/11 16:16:15 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYGUN_H
-# define RAYGUN_H
+#ifndef AMMO_PLAYER_H
+# define AMMO_PLAYER_H
 
 # include <iostream>
 # include <string>
 
-
-# include "Weapon.hpp"
 # include "Ammo.hpp"
-# include "AmmoPlayer.hpp"
 
-class RayGun : public Weapon{
+class AmmoPlayer : public Ammo{
 	public:
-		RayGun(void);
-		RayGun(RayGun const & stc);
-		~RayGun(void);
-		RayGun &		operator=(RayGun const & rhs);
+		AmmoPlayer(void);
+		AmmoPlayer(AmmoPlayer const & stc);
+		~AmmoPlayer(void);
+		AmmoPlayer &		operator=(AmmoPlayer const & rhs);
+		int					getNb();
 	protected:
 
+	static int				nb;
 };
 
 #endif

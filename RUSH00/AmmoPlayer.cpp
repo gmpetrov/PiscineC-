@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RayGun.hpp                                         :+:      :+:    :+:   */
+/*   AmmoPlayer.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/10 22:58:07 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/11 16:17:28 by gpetrov          ###   ########.fr       */
+/*   Created: 2015/01/11 16:09:51 by gpetrov           #+#    #+#             */
+/*   Updated: 2015/01/11 16:26:16 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYGUN_H
-# define RAYGUN_H
+#include "AmmoPlayer.hpp"
 
-# include <iostream>
-# include <string>
+AmmoPlayer::AmmoPlayer(void){
+	AmmoPlayer::nb++;
+}
 
+AmmoPlayer::AmmoPlayer(AmmoPlayer const & src) : Ammo(src){
+	AmmoPlayer::nb++;
+	*this = src;
+}
 
-# include "Weapon.hpp"
-# include "Ammo.hpp"
-# include "AmmoPlayer.hpp"
+AmmoPlayer::~AmmoPlayer(void){
+	AmmoPlayer::nb--;
+}
 
-class RayGun : public Weapon{
-	public:
-		RayGun(void);
-		RayGun(RayGun const & stc);
-		~RayGun(void);
-		RayGun &		operator=(RayGun const & rhs);
-	protected:
+AmmoPlayer &	AmmoPlayer::operator=(AmmoPlayer const & rhs){
+	(void)rhs;
+	return *this;
+}
 
-};
+int				AmmoPlayer::getNb(){
+	return AmmoPlayer::nb;
+}
 
-#endif
+int			AmmoPlayer::nb = 0;

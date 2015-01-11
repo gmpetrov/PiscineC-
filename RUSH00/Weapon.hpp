@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/10 22:38:31 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/11 00:26:49 by gpetrov          ###   ########.fr       */
+/*   Updated: 2015/01/11 16:25:08 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,21 @@
 
 # include <iostream>
 # include <string>
+# include "Ammo.hpp"
 
 class Weapon{
 	public:
-		Weapon(std::string name, int ammo);
-		Weapon(Weapon const & stc, std::string name, int ammo);
+		Weapon(std::string name, Ammo *ammo);
+		Weapon(Weapon const & stc, std::string name, Ammo *ammo);
 		~Weapon(void);
 		Weapon &		operator=(Weapon const & rhs);
 		std::string		getName();
-		int				getAmmo();
+		Ammo			*getAmmo();
+
 	protected:
 		std::string		_name;
-		int				_ammo;
+		// int				_ammo;
+		Ammo 			*_ammo;
 
 
 };

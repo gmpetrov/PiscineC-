@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RayGun.hpp                                         :+:      :+:    :+:   */
+/*   Ammo.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/10 22:58:07 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/11 16:17:28 by gpetrov          ###   ########.fr       */
+/*   Created: 2015/01/11 15:55:02 by gpetrov           #+#    #+#             */
+/*   Updated: 2015/01/11 16:03:04 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYGUN_H
-# define RAYGUN_H
+#include "Ammo.hpp"
 
-# include <iostream>
-# include <string>
+Ammo::Ammo(void){
 
+}
 
-# include "Weapon.hpp"
-# include "Ammo.hpp"
-# include "AmmoPlayer.hpp"
+Ammo::Ammo(Ammo const & src){
+	*this = src;
+}
 
-class RayGun : public Weapon{
-	public:
-		RayGun(void);
-		RayGun(RayGun const & stc);
-		~RayGun(void);
-		RayGun &		operator=(RayGun const & rhs);
-	protected:
+Ammo::~Ammo(void){
 
-};
+}
 
-#endif
+Ammo &	Ammo::operator=(Ammo const & rhs){
+	(void)rhs;
+	return *this;
+}
+
+std::string		Ammo::getType(){
+	return this->_type;
+}
