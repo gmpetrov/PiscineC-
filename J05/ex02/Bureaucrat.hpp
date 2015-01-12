@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 13:22:50 by gmp               #+#    #+#             */
-/*   Updated: 2015/01/13 00:09:19 by gpetrov          ###   ########.fr       */
+/*   Updated: 2015/01/13 00:11:54 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <iostream>
 # include <string>
+
+class Form;
 
 class Bureaucrat{
 
@@ -28,6 +30,8 @@ class Bureaucrat{
 		std::string 		getName() const;
 		Bureaucrat & 		operator++(int);
 		Bureaucrat & 		operator--(int);
+		void 				signForm(Form &);
+		void 				executeForm(Form const & form);
 		class GradeTooHighException : public std::exception {
 			public:
 				GradeTooHighException() throw();
@@ -44,6 +48,7 @@ class Bureaucrat{
 				GradeTooLowException & operator=(GradeTooLowException const & rhs) throw();
 				virtual const char *what() const throw();
 		};
+		Form 	*form;
 	private:
 		std::string const 	_name;
 		int					_grade;
