@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/10 17:41:46 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/12 00:40:26 by gpetrov          ###   ########.fr       */
+/*   Updated: 2015/01/12 01:31:09 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		Window::init(void){
 	getmaxyx(stdscr, this->_heigth, this->_width);
 	curs_set(FALSE);
 	keypad(stdscr, TRUE);
-	timeout(10);
+	timeout(25);
 	start_color();
 	init_pair(1, COLOR_RED, COLOR_BLACK);
 	attron(COLOR_PAIR(1));
@@ -70,6 +70,7 @@ void		Window::initData(void){
   	mvaddch(this->player->getY(), this->player->getY(), PLAYER);
   	this->enemy = NULL;
 }
+
 void		Window::generateMap(){
 	int 	i = 0;
 	int 	ran;
@@ -172,7 +173,6 @@ void		Window::moveAmmo(){
 	while (i < this->player->getWeapon()->getAmmo()[0].getNbInstance()){
 		if (this->player->getWeapon()->getAmmo()[i].getX() != this->player->getX()){
 			this->player->getWeapon()->getAmmo()[i].setX(this->player->getWeapon()->getAmmo()[i].getX() + 1);
-			mvaddch(this->player->getWeapon()->getAmmo()[i].getY(), this->player->getWeapon()->getAmmo()[i].getX(), BULLET);
 		}
 		if (this->player->getWeapon()->getAmmo()[i].getY() <= this->grid[this->player->getWeapon()->getAmmo()[i].getX() - 1]._top){
 			this->player->getWeapon()->getAmmo()[i].setX(-1000);
@@ -183,29 +183,35 @@ void		Window::moveAmmo(){
 		else if (this->bulletCollisionEnemy(this->player->getWeapon()->getAmmo()[i].getX(), this->player->getWeapon()->getAmmo()[i].getY()) == true){
 			this->player->getWeapon()->getAmmo()[i].setX(-1000);	
 		}
+		mvaddch(this->player->getWeapon()->getAmmo()[i].getY(), this->player->getWeapon()->getAmmo()[i].getX(), BULLET);
 		i++;
 	}
 	return ;
+}
+
+void	Window::deleteEnemy(Ship *toDelete){
+	if (toDelete == this->enemy && Window::nbEnemy == 1)
+		this->enemy = NULL;
+	else if (toDelete == this->enemy && Window::nbEnemy > 1){
+		this->enemy = this->enemy->next;
+		if (t his->enemy->next != NULL)
+			this->enemy->next->prev = this->enemy;
+	}
+	else{
+		if (toDelete->prev != NULL)
+		toDelete->prev->next = toDelete->next;
+		if (toDelete->next != NULL)
+			toDelete->next->prev = toDelete->prev;
+	}
+	toDelete->~Ship();
+	Window::nbEnemy--;
 }
 
 bool 	  Window::bulletCollisionEnemy(int x, int y){
 	Ship   *tmp = this->enemy;
 	while (tmp){
 		if (tmp->getX() == x && tmp->getY() == y){
-			if (tmp == this->enemy && Window::nbEnemy == 1)
-				this->enemy = NULL;
-			else if (tmp == this->enemy && Window::nbEnemy > 1){
-				this->enemy = this->enemy->next;
-				this->enemy->next->prev = this->enemy;
-			}
-			else{
-				if (tmp->prev != NULL)
-				tmp->prev->next = tmp->next;
-				if (tmp->next != NULL)
-					tmp->next->prev = tmp->prev;
-			}
-			// tmp->~Ship();
-			Window::nbEnemy--;
+			this->deleteEnemy(tmp);
 			Window::score++;
 			return true;
 		}
@@ -218,7 +224,7 @@ void		Window::moveEnemy(){
 	Ship   *tmp = this->enemy;
 	while (tmp != NULL){
 		if (tmp != NULL){
-			mvaddch(tmp->getY(), tmp->getX(), ENEMY_BASIC);
+			this->enemyIA(tmp);
 		}
 		tmp = tmp->next;
 	}
@@ -234,13 +240,8 @@ void		Window::generateEnemy(){
 	Ship 	*newEn = new EnemyBasic();
 	newEn->prev = NULL;
 	newEn->next = NULL;
-
 	int x = (random() % (this->_width - (this->_width / 2))) + (this->_width / 2);
 	int y = (random() % ((this->grid[x]._bottom - this->grid[x]._top))) + this->grid[x]._top;
-
-	// int x = 52 + (Window::nbEnemy);
-	// int y = this->player->getY() + Window::nbEnemy;
-
 	newEn->setX(x);
 	newEn->setY(y);
 	if (this->enemy == NULL){
@@ -252,6 +253,20 @@ void		Window::generateEnemy(){
 	}
 	tmp->next = newEn;
 	newEn->prev = tmp;
+}
+
+void 		Window::enemyIA(Ship *enemy){
+	if (enemy->getX() <= 3 || (this->grid[enemy->getX()]._top >= this->enemy->getY() || this->grid[enemy->getX()]._bottom <= this->enemy->getY())){
+		this->deleteEnemy(enemy);
+		return ;
+	}
+	enemy->setX(enemy->getX() - 2);
+	if (this->player->getY() > enemy->getY())
+		enemy->setY(enemy->getY() + 1);
+	else if (this->player->getY() < enemy->getY())
+		enemy->setY(enemy->getY() - 1);
+	mvaddch(enemy->getY(), enemy->getX(), ENEMY_BASIC);
+	return ;
 }
 
 void		Window::play(void){

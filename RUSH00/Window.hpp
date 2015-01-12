@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/10 17:41:46 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/12 00:41:06 by gpetrov          ###   ########.fr       */
+/*   Updated: 2015/01/12 00:52:16 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ class Window{
 		void		moveEnemy(void);
 		void		generateEnemy(void);
 		bool		bulletCollisionEnemy(int, int);
+		void		enemyIA(Ship *enemy);
+		void 		deleteEnemy(Ship *toDelete);
 		Grid		*grid;
 		Ship		*player;
 		Ship 		*enemy;
