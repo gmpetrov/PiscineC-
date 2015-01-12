@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/10 17:41:46 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/12 01:31:09 by gpetrov          ###   ########.fr       */
+/*   Updated: 2015/01/12 02:00:04 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,7 @@ void	Window::deleteEnemy(Ship *toDelete){
 		this->enemy = NULL;
 	else if (toDelete == this->enemy && Window::nbEnemy > 1){
 		this->enemy = this->enemy->next;
-		if (t his->enemy->next != NULL)
+		if (this->enemy->next != NULL)
 			this->enemy->next->prev = this->enemy;
 	}
 	else{
@@ -210,7 +210,7 @@ void	Window::deleteEnemy(Ship *toDelete){
 bool 	  Window::bulletCollisionEnemy(int x, int y){
 	Ship   *tmp = this->enemy;
 	while (tmp){
-		if (tmp->getX() == x && tmp->getY() == y){
+		if (((tmp->getX() + 1) == x || (tmp->getX() + 2) == x || tmp->getX() == x)  && tmp->getY() == y){
 			this->deleteEnemy(tmp);
 			Window::score++;
 			return true;
@@ -260,6 +260,11 @@ void 		Window::enemyIA(Ship *enemy){
 		this->deleteEnemy(enemy);
 		return ;
 	}
+	else if (enemy->getX() == this->player->getX() && enemy->getY() == this->player->getY()){
+		this->deleteEnemy(enemy);
+		this->player->setHP(this->player->getHP() - 1);
+		return ;
+	}
 	enemy->setX(enemy->getX() - 2);
 	if (this->player->getY() > enemy->getY())
 		enemy->setY(enemy->getY() + 1);
@@ -267,6 +272,12 @@ void 		Window::enemyIA(Ship *enemy){
 		enemy->setY(enemy->getY() - 1);
 	mvaddch(enemy->getY(), enemy->getX(), ENEMY_BASIC);
 	return ;
+}
+
+void		Window::endGame(void){
+	endwin();
+	std::cout << "YOU DIED - (SCORE : " << Window::score << " , TIME : " << Window::timer << ")" << std::endl;
+	exit(0);
 }
 
 void		Window::play(void){
@@ -286,6 +297,8 @@ void		Window::play(void){
 		this->generateMap();
 		this->update();
 		this->collision();
+		if (this->player->getHP() <= 0)
+			this->endGame();
 	}
 }
 

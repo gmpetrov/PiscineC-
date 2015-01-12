@@ -6,16 +6,16 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/10 22:34:48 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/11 21:05:46 by gpetrov          ###   ########.fr       */
+/*   Updated: 2015/01/12 01:49:29 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Player.hpp"
 
-Player::Player(void) : Ship(3, 3){
+Player::Player(void) : Ship(5, 5){
 }
 
-Player::Player(Player const & src) : Ship(src, 3, 3){
+Player::Player(Player const & src) : Ship(src, 5, 5){
 	*this = src;
 }
 
