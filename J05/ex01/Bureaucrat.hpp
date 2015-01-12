@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmp <gmp@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 13:22:50 by gmp               #+#    #+#             */
-/*   Updated: 2015/01/12 19:01:04 by gmp              ###   ########.fr       */
+/*   Updated: 2015/01/12 21:10:21 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,18 @@ class Bureaucrat{
 		void 				signForm(Form &);
 		class GradeTooHighException : public std::exception {
 			public:
-				// GradeTooHighException();
-				// GradeTooHighException(GradeTooHighException const & src);
+				GradeTooHighException() throw();
+				GradeTooHighException(GradeTooHighException const & src) throw();
+				~GradeTooHighException() throw();
+				GradeTooHighException & operator=(GradeTooHighException const & rhs) throw();
 				virtual const char *what() const throw();
 		};
 		class GradeTooLowException : public std::exception {
 			public:
+				GradeTooLowException() throw();
+				GradeTooLowException(GradeTooLowException const & src) throw();
+				~GradeTooLowException() throw();
+				GradeTooLowException & operator=(GradeTooLowException const & rhs) throw();
 				virtual const char *what() const throw();
 		};
 		Form 	*form;

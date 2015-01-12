@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmp <gmp@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 13:22:50 by gmp               #+#    #+#             */
-/*   Updated: 2015/01/12 18:58:43 by gmp              ###   ########.fr       */
+/*   Updated: 2015/01/12 20:51:29 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,40 @@ const char 		*Bureaucrat::GradeTooHighException::what() const throw(){
 
 const char 		*Bureaucrat::GradeTooLowException::what() const throw(){
 	return ("[EXCEPTION] : Grade is too Low");
+}
+
+Bureaucrat::GradeTooHighException::GradeTooHighException() throw(){
+	return ;
+}
+
+Bureaucrat::GradeTooHighException::GradeTooHighException(GradeTooHighException const & src) throw(){
+	*this = src;
+	return ;
+}
+
+Bureaucrat::GradeTooHighException::~GradeTooHighException() throw(){
+	return ;
+}
+
+Bureaucrat::GradeTooHighException & Bureaucrat::GradeTooHighException::operator=(GradeTooHighException const & rhs) throw(){
+	(void)rhs;
+	return *this;
+}
+
+Bureaucrat::GradeTooLowException::GradeTooLowException() throw(){
+	return ;
+}
+
+Bureaucrat::GradeTooLowException::GradeTooLowException(GradeTooLowException const & src) throw(){
+	*this = src;
+	return ;
+}
+
+Bureaucrat::GradeTooLowException::~GradeTooLowException() throw(){
+	return ;
+}
+
+Bureaucrat::GradeTooLowException & Bureaucrat::GradeTooLowException::operator=(GradeTooLowException const & rhs) throw(){
+	(void)rhs;
+	return *this;
 }
