@@ -6,7 +6,7 @@
 /*   By: gmp <gmp@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 15:25:48 by gmp               #+#    #+#             */
-/*   Updated: 2015/01/12 17:37:07 by gmp              ###   ########.fr       */
+/*   Updated: 2015/01/12 18:46:55 by gmp              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@ class Form{
 		int 	 			getGradeToSign() const;
 		int 	 			getGradeToExec() const;
 		void 				beSigned(Bureaucrat bureaucrat);
-		class SignFailException : public std::exception{
-			public:
-				virtual const char *what() const throw();
-		};
 	private:
 		std::string const 	_name;
 		int const 			_gradeToSign;

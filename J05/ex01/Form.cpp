@@ -6,7 +6,7 @@
 /*   By: gmp <gmp@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 15:25:48 by gmp               #+#    #+#             */
-/*   Updated: 2015/01/12 18:27:25 by gmp              ###   ########.fr       */
+/*   Updated: 2015/01/12 18:46:40 by gmp              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,17 @@ int  				Form::getGradeToExec() const{
 	return this->_gradeToExec;
 }
 
-void 			Bureaucrat::signForm(Form form){
+void 			Bureaucrat::signForm(Form &form){
 	try{
 		form.beSigned(*this);
+		if (form.getSigned() == false)
+			throw Bureaucrat::GradeTooLowException();
+		else
+			std::cout << this->getName() << " signs " << form.getName() << std::endl;
 	}
-	catch(Form::SignFailException e){
-		std::cout << "test2" << std::endl;
-	}
-	catch(std::exception e){
-		std::cout << "test" << std::endl;
+	catch(Bureaucrat::GradeTooLowException e){
+		std::cout << this->getName() << "  cannot sign " << form.getName() << " because " << e.what() << std::endl;
+		
 	}
 }
 
@@ -84,8 +86,4 @@ void 				Form::beSigned(Bureaucrat bureaucrat){
 	catch(Bureaucrat::GradeTooLowException e){
 		std::cout << e.what() << std::endl;
 	}
-}
-
-const char 		*Form::SignFailException::what() const throw(){
-	return ("[EXCEPTION] : Sign Failed");
 }

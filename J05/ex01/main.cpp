@@ -6,7 +6,7 @@
 /*   By: gmp <gmp@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 13:22:50 by gmp               #+#    #+#             */
-/*   Updated: 2015/01/12 17:51:24 by gmp              ###   ########.fr       */
+/*   Updated: 2015/01/12 18:47:04 by gmp              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int		main(void){
 
 	std::cout << form << std::endl;
 
-	// jean.signForm(form);
-	form.beSigned(jean);
+	jean.signForm(form);
+
 	std::cout << form << std::endl;
 	// Bureaucrat georges("Georges", 149);
 	// georges--;

@@ -17,6 +17,17 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const & src, std::string name, int grade) : _name(name), _grade(grade){
+    try{
+		if (this->getGrade() + 1 > 150){
+			throw Bureaucrat::GradeTooLowException();
+		}
+		else
+			this->_grade++;
+	}
+	catch (Bureaucrat::GradeTooLowException e){
+		std::cout << e.what() << std::endl;
+	}
+
 	*this = src;
 }
 
