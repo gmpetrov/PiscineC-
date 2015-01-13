@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 15:25:48 by gmp               #+#    #+#             */
-/*   Updated: 2015/01/13 00:51:19 by gpetrov          ###   ########.fr       */
+/*   Updated: 2015/01/13 00:51:39 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@ class Form{
 	public:
 		Form(std::string, int const, int const);
 		Form(Form const & src, std::string, int const, int const);
-		~Form(void);
+		virtual ~Form(void) = 0;
 		Form &operator=(Form const & rhs);
 		std::string 	 	getName()const;
 		bool 				getSigned() const;
 		int 	 			getGradeToSign() const;
 		int 	 			getGradeToExec() const;
 		void 				beSigned(Bureaucrat bureaucrat);
+		virtual void 		execute(Bureaucrat const & executor) const;
+		std::string 		target;
 	private:
 		std::string const 	_name;
 		int const 			_gradeToSign;
