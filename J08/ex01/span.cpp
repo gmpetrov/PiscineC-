@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/15 12:51:16 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/15 14:16:51 by gpetrov          ###   ########.fr       */
+/*   Updated: 2015/01/15 21:35:16 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,14 @@ int	  	Span::shortestSpan(){
 		throw std::exception();
 	std::vector<int> v = this->_container;
 	sort(v.begin(), v.end());
-	int a = *(v.begin());
-	int b = *(v.begin() + 1);
-	return (b - a);
+	int tmp;
+	tmp = v[1] - v[0];
+	for(unsigned int i = 0; i < v.size(); i++){
+		if ((i + 1) < v.size() && (v[i + 1] - v[i] < tmp)){
+			tmp = v[i + 1] - v[i];
+		}
+	}
+	return abs(tmp);
 }
 
 int 	Span::longestSpan(){
@@ -53,9 +58,9 @@ int 	Span::longestSpan(){
 		throw std::exception();
 	std::vector<int> v = this->_container;
 	sort(v.begin(), v.end());
-	int a = *(v.begin());
-	int b = *(v.end() - 1);
-	return (b - a);
+	int a = abs(*(v.begin()));
+	int b = abs(*(v.end() - 1));
+	return abs(b - a);
 }
 
 void 	Span::addRange(std::vector<int> v){

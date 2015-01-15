@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/15 12:51:16 by gpetrov           #+#    #+#             */
-/*   Updated: 2015/01/15 14:22:20 by gpetrov          ###   ########.fr       */
+/*   Updated: 2015/01/15 21:32:56 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,14 @@ int		main(){
 		// test.displayContainer();
 		std::cout << test.shortestSpan() << std::endl;
 		std::cout << test.longestSpan() << std::endl;
+
+		Span test2 = Span(4);
+		test2.addNumber(2);
+		test2.addNumber(23);
+		test2.addNumber(25);
+		test2.addNumber(26);
+
+		std::cout << test2.shortestSpan() <<  " test2" << std::endl;
 	}
 	catch(std::exception & e){
 		std::cout << e.what() << std::endl;
